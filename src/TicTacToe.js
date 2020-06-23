@@ -38,13 +38,29 @@ const initialState = {
   ]
 };
 
-function determineWinner(squares, winningLines) {
+function determineWinner(squares, winningLines, difficulty) {
   // check to see which board is selected, give appropriate solutions
 
   for (let i = 0; i < winningLines.length; i++) {
-    const [a, b, c] = winningLines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[b] === squares[c]) {
-      return squares[a];
+    if (difficulty === "easy") {
+      const [a, b, c] = winningLines[i];
+      if (
+        squares[a] &&
+        squares[a] === squares[b] &&
+        squares[b] === squares[c]
+      ) {
+        return squares[a];
+      }
+    } else if (difficulty === "hard") {
+      const [a, b, c, d] = winningLines[i];
+      if (
+        squares[a] &&
+        squares[a] === squares[b] &&
+        squares[b] === squares[c] &&
+        squares[c] === squares[d]
+      ) {
+        return squares[a];
+      }
     }
   }
   return null;
@@ -88,7 +104,18 @@ function gameReducer(state, action) {
         ...initialState,
         difficulty: "hard",
         boardSquares: Array(16).fill(null),
-        winningLines: [], // TODO: figure out winning lines for 16
+        winningLines: [
+          [0, 1, 2, 3],
+          [3, 4, 5, 6],
+          [6, 7, 8, 9],
+          [0, 3, 6, 8],
+          [0, 5, 10, 15],
+          [3, 6, 9, 12],
+          [0, 4, 8, 12],
+          [1, 5, 9, 13],
+          [2, 6, 10, 14],
+          [3, 7, 11, 15]
+        ], // TODO: figure out winning lines for 16
         playerXWins: state.playerXWins,
         playerOWins: state.playerOWins
       };
@@ -130,7 +157,8 @@ function gameReducer(state, action) {
   if (!previousWinner) {
     const winner = determineWinner(
       newState.boardSquares,
-      newState.winningLines
+      newState.winningLines,
+      newState.difficulty
     );
     newState.currentWinner = winner;
 
