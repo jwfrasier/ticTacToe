@@ -63,6 +63,7 @@ export function gameReducer(state, action) {
   let newState = { ...state };
 
   switch (action.type) {
+    // case for what constitutes a 'move' for a player
     case "move":
       // if there's already a winner, prevent other player from trying to make a move
       if (newState.currentWinner) break;
@@ -76,8 +77,6 @@ export function gameReducer(state, action) {
       newState.player = state.player === "X" ? "O" : "X";
       break;
     case "hard":
-      // TODO: scale up number of boardsquares and reset rest of state;
-
       return {
         ...initialState,
         difficulty: "hard",
@@ -93,7 +92,7 @@ export function gameReducer(state, action) {
           [1, 5, 9, 13],
           [2, 6, 10, 14],
           [3, 7, 11, 15]
-        ], // TODO: figure out winning lines for 16
+        ],
         playerXWins: state.playerXWins,
         playerOWins: state.playerOWins
       };
