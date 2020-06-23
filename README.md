@@ -1,6 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Howdy!  This is the Tic Tac Toe project I took on for the Traction Tools team assessment.
+<h1>Howdy!</h1> 
+
+This is the Tic Tac Toe project I took on for the Traction Tools team assessment.
 
 The technology used includes
 React/React Hooks
@@ -9,7 +11,8 @@ Styled Components
 CSS Grid
 Flexbox
 
-My requirements were as follows:
+<h3>My requirements were as follows:</h3>
+
 The user can play a game of tic-tac-toe.
 The user should be able to keep track of their high score.
 The application should be programmed in React.
